@@ -55,7 +55,8 @@ public class Disciplina {
     }
 
     //diz a quantidade de alunos na disciplina
-    public void numeroDeMatriculados(){
+    public int numeroDeMatriculados(){
         System.out.println("Em " + this.nome + " tem " + this.alunosMatriculados.length + " alunos matriculados");
+        return this.alunosMatriculados.length;
     }
 }
