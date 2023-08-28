@@ -26,20 +26,31 @@ public class Professor {
     }
 
     //lista as disciplinas que o professor ministra
-    public void listarDisciplinasMinistradas(){
+    //lista as disciplinas que o professor ministra
+    public Disciplina[] listarDisciplinasMinistradas() {
+        int i = 0;
+        Disciplina[] arrayDeObjetos = new Disciplina[this.getDisciplinasMinistradas().length];
         System.out.println("Professor(a) " + this.nome + " ministra:");
-        for(Disciplina disciplina: disciplinasMinistradas){
+        for (Disciplina disciplina : disciplinasMinistradas) {
             System.out.println(disciplina.getNome());
+            arrayDeObjetos[i] = disciplina;
+            i++;
         }
         System.out.println();
+        return arrayDeObjetos;
     }
 
     //lista os horarios que o professor ministra aula
-    public void horariosDeAula(){
-        System.out.println(this.nome +  " ministra aulas nos seguintes horários:");
-        for(Disciplina disciplina: disciplinasMinistradas){
+    public Disciplina[] horariosDeAula() {
+        int i = 0;
+        Disciplina[] arrayDeObjetos = new Disciplina[this.getDisciplinasMinistradas().length];
+        System.out.println(this.nome + " ministra aulas nos seguintes horários:");
+        for (Disciplina disciplina : disciplinasMinistradas) {
             System.out.println(disciplina.getNome() + " Das " + disciplina.getHorarioInicio() + " até " + disciplina.getHorarioFim());
+            arrayDeObjetos[i] = disciplina;
+            i++;
         }
         System.out.println();
+        return arrayDeObjetos;
     }
 }
