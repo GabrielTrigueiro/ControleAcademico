@@ -26,7 +26,6 @@ public class Professor {
     }
 
     //lista as disciplinas que o professor ministra
-    //lista as disciplinas que o professor ministra
     public Disciplina[] listarDisciplinasMinistradas() {
         int i = 0;
         Disciplina[] arrayDeObjetos = new Disciplina[this.getDisciplinasMinistradas().length];
