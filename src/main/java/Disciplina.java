@@ -46,12 +46,17 @@ public class Disciplina {
     }
 
     //lista os alunos matriculados na disciplina
-    public void listarAlunosMatriculados(){
+    public Aluno[] listarAlunosMatriculados(){
+        int i = 0;
+        Aluno[] lista = new Aluno[this.alunosMatriculados.length];
         System.out.println("Alunos matriculados em " + this.nome + ":");
         for (Aluno aluno : alunosMatriculados) {
             System.out.println(aluno.getNome());
+            lista[i] = aluno;
+            i++;
         }
         System.out.println();
+        return lista;
     }
 
     //diz a quantidade de alunos na disciplina
