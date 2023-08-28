@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class DisciplinaTestes {
+public class DisciplinaTeste {
     @Test
     public void testNumeroMatriculados() {
         Aluno[] alunos = {
@@ -17,7 +17,6 @@ public class DisciplinaTestes {
 
         disciplinas[0].setAlunosMatriculados(new Aluno[]{alunos[0], alunos[1]});
         disciplinas[1].setAlunosMatriculados(new Aluno[]{alunos[0], alunos[2]});
-
 
         int numeroFinal = disciplinas[0].numeroDeMatriculados();
         int numeroEsperado = disciplinas[0].getAlunosMatriculados().length;
