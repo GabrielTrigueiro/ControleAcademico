@@ -1,7 +1,5 @@
 package Entidades;
 
-import Control.Horario;
-
 public class Disciplina {
     private String nome;
     private String id;
@@ -11,10 +9,11 @@ public class Disciplina {
         horarios.retornarHorarios();
     }
 
-    public Disciplina(String nome, String id, Horario horarios) {
+    public Disciplina(String nome, String id, String inicio, String fim) {
+        Horario novoHorario = new Horario(inicio, fim);
         this.nome = nome;
         this.id = id;
-        this.horarios = horarios;
+        this.horarios = novoHorario;
     }
 
     public String getId() {
