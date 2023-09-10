@@ -1,20 +1,26 @@
 import Control.AlunoDisciplina;
 import Control.ProfessorDisciplina;
-import Entidades.Horario;
 import Entidades.Disciplina;
+
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Disciplina mat = new Disciplina("Matemática", "12312321", "9:00", "11:00");
-        Disciplina logica = new Disciplina("Lógica", "12321", "11:00", "13:00");
 
-        AlunoDisciplina edson = new AlunoDisciplina("Gabriel", 123);
-        edson.cadastrarDisciplina(mat);
-        edson.cadastrarDisciplina(logica);
-        edson.verificarDisciplinas();
+        ControleAcademico controle = new ControleAcademico();
 
-        ProfessorDisciplina sabrina = new ProfessorDisciplina("Sabrina",213);
-        sabrina.cadastrarDisciplina(mat);
-        sabrina.verificarDisciplinas();
+
+        controle.matricularAluno("Gabriel", 123);
+        controle.cadastrarDisciplina("Matemática", "12312321", "9:00", "11:00");
+        controle.cadastrarDisciplina("Lógica", "12321", "11:00", "13:00");
+        controle.matricularProfessor("Sabrina",213);
+
+
+        ArrayList<AlunoDisciplina> alunos = controle.getAlunos();
+        ArrayList<Disciplina> disciplinas = controle.getDisciplinas();
+        ArrayList<ProfessorDisciplina> professores = controle.getProfessores();
+
+        alunos.get(0).cadastrarDisciplina(disciplinas.get(0));
+        alunos.get(0).verificarDisciplinas();
     }
 }
