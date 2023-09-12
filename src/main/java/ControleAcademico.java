@@ -1,9 +1,9 @@
 import Control.AlunoDisciplina;
 import Control.ProfessorDisciplina;
-import Entidades.Aluno;
 import Entidades.Disciplina;
-import Entidades.Professor;
-import Entidades.Horario;
+import Tratamento.AlunoNaoEncontradoException;
+import Tratamento.DisciplinaNaoEncontradaException;
+import Tratamento.ProfessorNaoEncontradoException;
 
 import java.util.ArrayList;
 
@@ -19,6 +19,7 @@ public class ControleAcademico {
         this.disciplinas = new ArrayList<>();
     }
 
+    //cadastros
     public void matricularAluno(String nome, int matricula) {
         AlunoDisciplina novoAluno = new AlunoDisciplina(nome, matricula);
         alunos.add(novoAluno);
@@ -29,19 +30,59 @@ public class ControleAcademico {
         professores.add(novoProfessor);
     }
 
-    public void cadastrarDisciplina(String nome, String id, String inicio, String fim){
+    public void cadastrarDisciplina(String nome, String id, String inicio, String fim) {
         Disciplina novaDisciplina = new Disciplina(nome, id, inicio, fim);
         disciplinas.add(novaDisciplina);
     }
 
-    public void alunosDisciplina(Disciplina disciplina){
-        int qtd = 0;
-        for (AlunoDisciplina aluno : alunos) {
-            aluno.getDisciplinas().contains(disciplina);
+    //operações
+    public AlunoDisciplina retornarAluno(int matricula) throws AlunoNaoEncontradoException {
+        AlunoDisciplina alunoProcurado = null;
+        for (AlunoDisciplina alunoNaLista : alunos) {
+            if (alunoNaLista.getAluno().getMatricula() == matricula) {
+                alunoProcurado = alunoNaLista;
+                break;
+            }
         }
-        System.out.println(qtd + " matriculados na disciplinas de " + disciplina.getNome());
+        if (alunoProcurado != null) {
+            return alunoProcurado;
+        } else {
+            throw new AlunoNaoEncontradoException("Aluno não encontrado com a matrícula especificada: " + matricula);
+        }
+    }
+    public ProfessorDisciplina retornarProfessor(int matricula) throws ProfessorNaoEncontradoException {
+        ProfessorDisciplina professorProcurado = null;
+        for (ProfessorDisciplina professorNaLista : professores) {
+            if (professorNaLista.getProfessor().getMatricula() == matricula) {
+                professorProcurado = professorNaLista;
+                break;
+            }
+        }
+        if (professorProcurado != null) {
+            return professorProcurado;
+        } else {
+            throw new ProfessorNaoEncontradoException("Aluno não encontrado com a matrícula especificada: " + matricula);
+        }
+    }
+    public Disciplina retornarDisciplina(String id) throws DisciplinaNaoEncontradaException {
+        Disciplina disciplinaProcurada = null;
+        for (Disciplina disciplinaNaLista : disciplinas) {
+            if (disciplinaNaLista.getId().equals(id)) {
+                disciplinaProcurada = disciplinaNaLista;
+                break;
+            }
+        }
+        if (disciplinaProcurada != null) {
+            return disciplinaProcurada;
+        } else {
+            throw new DisciplinaNaoEncontradaException("Disciplina não encontrada com esse id: " + id);
+        }
     }
 
+    //consultar quantos alunos em uma disciplina
+    //usar os metodos de associar diciplinas
+
+    //gets & sets
     public ArrayList<AlunoDisciplina> getAlunos() {
         return alunos;
     }
