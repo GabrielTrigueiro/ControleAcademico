@@ -78,6 +78,16 @@ public class ControleAcademico {
     }
 
     //consultar quantos alunos em uma disciplina
+    public void consultarAlunosNaDisciplina(String idDisciplina) throws NaoEncontradoException {
+        int qtd = 0;
+        Disciplina disciplina = retornarDisciplina(idDisciplina);
+        for(AlunoDisciplina aluno: alunos){
+            if(aluno.getDisciplinas().contains(disciplina)){
+                qtd++;
+            }
+        }
+        System.out.println(disciplina.getNome() + " possui " + qtd + " aluno(s) matriculado(s).");
+    }
 
     //usar os metodos de associar diciplinas
     public void adicionarDisciplinaAoAluno(int matricula, String idDisciplina) throws NaoEncontradoException {
@@ -90,6 +100,18 @@ public class ControleAcademico {
         else {
             aluno.cadastrarDisciplina(disciplina);
             System.out.println(aluno.getAluno().getNome() + " foi matrículado em " + disciplina.getNome());
+        }
+    }
+    public void adicionarDisciplinaAoProfessor(int matricula, String idDisciplina) throws NaoEncontradoException {
+        Disciplina disciplina = retornarDisciplina(idDisciplina);
+        ProfessorDisciplina professor = retornarProfessor(matricula);
+
+        if(professor.getDisciplinas().contains(disciplina)){
+            System.out.println("O professor já está ensinando essa disciplina.");
+        }
+        else {
+            professor.cadastrarDisciplina(disciplina);
+            System.out.println(professor.getProfessor().getNome() + " agora está lecionando " + disciplina.getNome());
         }
     }
 

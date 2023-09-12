@@ -11,5 +11,7 @@ public class Main {
         controle.matricularProfessor("Sabrina",213);
 
         controle.adicionarDisciplinaAoAluno(123, "12321");
+        controle.consultarAlunosNaDisciplina("12321");
+        controle.adicionarDisciplinaAoProfessor(213, "12321");
     }
 }
